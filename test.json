@@ -1,1 +1,1 @@
-{results:{[{"name":"James", "age": 28},{"name":"Anna", "age": 37}]}, message: ""}
+{"results":[{"name":"James", "age": 28},{"name":"Anna", "age": 37}], "message": ""}
