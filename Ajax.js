@@ -41,7 +41,7 @@ Ajax.Methods.prototype.createRequest = function() {
 
 Ajax.Methods.prototype.onJsonLoad = function() {
 	if (this.req.status >= 200 && this.req.status < 400)
-		this.opt.complete(JSON.parse(this.req.responseText));
+		this.opt.complete(JSON.parse(this.req.responseText), this.req);
 };
 
 Ajax.Methods.prototype.onJsonError = function() {
