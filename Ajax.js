@@ -12,9 +12,6 @@ function Ajax(options) {
 	this.opt.url		= options.url;
 }
 
-Ajax.prototype.constructor = Ajax;
-
-
 
 // Methods
 Ajax.prototype.bindEvents = function(opt) {
