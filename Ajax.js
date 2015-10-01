@@ -2,6 +2,21 @@
 
 var Ajax = {};
 
+Ajax.Utils = {
+	extend : function() {
+		var extended = {}, argument;
+
+		for(var key in arguments) {
+			argument = arguments[key];
+			for (var prop in argument)
+				if (Object.prototype.hasOwnProperty.call(argument, prop))
+					extended[prop] = argument[prop];
+		}
+
+		return extended;
+	}
+};
+
 Ajax.getJSON = function(options) {
 
 	var ajax = new Ajax.Methods(options);
@@ -14,18 +29,19 @@ Ajax.getJSON = function(options) {
 };
 
 Ajax.Methods = function(options) {
-	this.opt = {};
-
 	if (!options.url)
 		return false;
 
-	this.opt.method		= options.method || 'GET';
-	this.opt.complete	= options.complete || function(){};
-	this.opt.fail		= options.fail || function(){};
-	this.opt.url		= options.url;
+	this.opt = Ajax.Utils.extend(this.defaultOptions, options);
 
 	return this;
-}
+};
+
+Ajax.Methods.prototype.defaultOptions = {
+	method		: 'GET',
+	complete	: function(){},
+	fail		: function(){}
+};
 
 Ajax.Methods.prototype.bindEvents = function(opt) {
 	if (opt.type === 'json') {
