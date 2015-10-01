@@ -1,6 +1,19 @@
 'use strict';
 
-function Ajax(options) {
+var Ajax = {};
+
+Ajax.getJSON = function(options) {
+
+	var ajax = new Ajax.Methods(options);
+
+	ajax.createRequest();
+
+	ajax.bindEvents({type: 'json'});
+
+	ajax.req.send();
+};
+
+Ajax.Methods = function(options) {
 	this.opt = {};
 
 	if (!options.url)
@@ -10,35 +23,27 @@ function Ajax(options) {
 	this.opt.complete	= options.complete || function(){};
 	this.opt.fail		= options.fail || function(){};
 	this.opt.url		= options.url;
+
+	return this;
 }
 
-
-// Methods
-Ajax.prototype.bindEvents = function(opt) {
+Ajax.Methods.prototype.bindEvents = function(opt) {
 	if (opt.type === 'json') {
 		this.req.onload		= this.onJsonLoad.bind(this);
 		this.req.onerror	= this.onJsonError.bind(this);
 	}
 };
 
-Ajax.prototype.createRequest = function() {
+Ajax.Methods.prototype.createRequest = function() {
 	this.req = new XMLHttpRequest();
 	this.req.open(this.opt.method, this.opt.url, true);
 };
 
-Ajax.prototype.onJsonLoad = function() {
+Ajax.Methods.prototype.onJsonLoad = function() {
 	if (this.req.status >= 200 && this.req.status < 400)
 		this.opt.complete(JSON.parse(this.req.responseText));
 };
 
-Ajax.prototype.onJsonError = function() {
+Ajax.Methods.prototype.onJsonError = function() {
 	this.opt.fail(this.req);
-};
-
-Ajax.prototype.getJSON = function() {
-	this.createRequest();
-
-	this.bindEvents({type: 'json'});
-
-	this.req.send();
 };
