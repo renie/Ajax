@@ -8,14 +8,12 @@
 	<script src="Ajax.js"></script>
 	<script>
 		(function(){
-			var ajax = new Ajax({
+			Ajax.getJSON({
 				url: '/test.json',
 				complete: function(data) {
 					console.log(data);
 				}
 			});
-
-			ajax.getJSON();
 		})();
 	</script>
 </body>
