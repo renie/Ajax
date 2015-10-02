@@ -18,7 +18,6 @@ Ajax.Utils = {
 };
 
 Ajax.call = function(options) {
-
 	var ajax = new Ajax.Methods(options);
 
 	ajax.createRequest();
@@ -54,8 +53,17 @@ Ajax.Methods.prototype.createRequest = function() {
 };
 
 Ajax.Methods.prototype.loadListener = function() {
-	if (this.req.status >= 200 && this.req.status < 400)
-		this.opt.complete(JSON.parse(this.req.responseText));
+	if (this.req.status >= 200 && this.req.status < 400) {
+		var data;
+
+		try {
+			data = JSON.parse(this.req.responseText);
+		} catch(e) {
+			data = this.req.responseText;
+		}
+		
+		this.opt.complete(data);
+	}
 };
 
 Ajax.Methods.prototype.errorListener = function() {
