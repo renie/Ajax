@@ -17,13 +17,13 @@ Ajax.Utils = {
 	}
 };
 
-Ajax.getJSON = function(options) {
+Ajax.call = function(options) {
 
 	var ajax = new Ajax.Methods(options);
 
 	ajax.createRequest();
 
-	ajax.bindEvents({type: 'json'});
+	ajax.bindEvents();
 
 	ajax.req.send();
 };
@@ -43,11 +43,9 @@ Ajax.Methods.prototype.defaultOptions = {
 	fail		: function(){}
 };
 
-Ajax.Methods.prototype.bindEvents = function(opt) {
-	if (opt.type === 'json') {
-		this.req.onload		= this.onJsonLoad.bind(this);
-		this.req.onerror	= this.onJsonError.bind(this);
-	}
+Ajax.Methods.prototype.bindEvents = function() {
+	this.req.onload		= this.loadListener.bind(this);
+	this.req.onerror	= this.errorListener.bind(this);
 };
 
 Ajax.Methods.prototype.createRequest = function() {
@@ -55,11 +53,11 @@ Ajax.Methods.prototype.createRequest = function() {
 	this.req.open(this.opt.method, this.opt.url, true);
 };
 
-Ajax.Methods.prototype.onJsonLoad = function() {
+Ajax.Methods.prototype.loadListener = function() {
 	if (this.req.status >= 200 && this.req.status < 400)
 		this.opt.complete(JSON.parse(this.req.responseText));
 };
 
-Ajax.Methods.prototype.onJsonError = function() {
+Ajax.Methods.prototype.errorListener = function() {
 	this.opt.fail(this.req);
 };
