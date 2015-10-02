@@ -50,8 +50,8 @@ Ajax.Methods.prototype.bindEvents = function() {
 
 Ajax.Methods.prototype.createRequest = function() {
 	this.req = new XMLHttpRequest();
-	setHeaders();
 	this.req.open(this.opt.method, this.opt.url, true);
+	setHeaders();
 };
 
 Ajax.Methods.prototype.setHeaders = function() {
