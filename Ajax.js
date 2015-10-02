@@ -24,7 +24,7 @@ Ajax.call = function(options) {
 
 	ajax.bindEvents();
 
-	ajax.req.send();
+	ajax.req.send(ajax.opt.data);
 };
 
 Ajax.Methods = function(options) {
@@ -38,6 +38,7 @@ Ajax.Methods = function(options) {
 
 Ajax.Methods.prototype.defaultOptions = {
 	method		: 'GET',
+	data		: null,
 	complete	: function(){},
 	fail		: function(){}
 };
@@ -61,7 +62,7 @@ Ajax.Methods.prototype.loadListener = function() {
 		} catch(e) {
 			data = this.req.responseText;
 		}
-		
+
 		this.opt.complete(data);
 	}
 };
