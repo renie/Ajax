@@ -42,6 +42,7 @@ Ajax.Methods.prototype.defaultOptions = {
 	success		: function(){},
 	fail		: function(){},
 	contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	headers		: {},
 	context		: window
 };
 
