@@ -40,7 +40,8 @@ Ajax.Methods.prototype.defaultOptions = {
 	method		: 'GET',
 	data		: null,
 	complete	: function(){},
-	fail		: function(){}
+	fail		: function(){},
+	contentType : 'application/x-www-form-urlencoded; charset=UTF-8'
 };
 
 Ajax.Methods.prototype.bindEvents = function() {
@@ -55,6 +56,8 @@ Ajax.Methods.prototype.createRequest = function() {
 };
 
 Ajax.Methods.prototype.setHeaders = function() {
+	this.opt.headers['Content-Type'] = this.opt.contentType;
+	
 	for (var header in this.opt.headers)
 		this.req.setRequestHeader(header, this.opt[header]);
 };
