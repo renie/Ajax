@@ -63,7 +63,7 @@ Ajax.Methods.prototype.loadListener = function() {
 	if (this.req.status >= 200 && this.req.status < 400) {
 		var data;
 
-		if (this.opt.contentType !== "text"){
+		if (this.opt.dataType !== "text"){
 			try{
 				data = JSON.parse(this.req.responseText);
 			}
