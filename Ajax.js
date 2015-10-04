@@ -2,48 +2,82 @@
 
 var Ajax = {};
 
-Ajax.getJSON = function(options) {
+Ajax.Utils = {
+	extend : function() {
+		var extended = {}, argument;
 
+		for(var key in arguments) {
+			argument = arguments[key];
+			for (var prop in argument)
+				if (Object.prototype.hasOwnProperty.call(argument, prop))
+					extended[prop] = argument[prop];
+		}
+
+		return extended;
+	}
+};
+
+Ajax.call = function(options) {
 	var ajax = new Ajax.Methods(options);
 
 	ajax.createRequest();
 
-	ajax.bindEvents({type: 'json'});
+	ajax.bindEvents();
 
-	ajax.req.send();
+	ajax.req.send(ajax.opt.data);
 };
 
 Ajax.Methods = function(options) {
-	this.opt = {};
-
 	if (!options.url)
 		return false;
 
-	this.opt.method		= options.method || 'GET';
-	this.opt.complete	= options.complete || function(){};
-	this.opt.fail		= options.fail || function(){};
-	this.opt.url		= options.url;
+	this.opt = Ajax.Utils.extend(this.defaultOptions, options);
 
 	return this;
-}
+};
 
-Ajax.Methods.prototype.bindEvents = function(opt) {
-	if (opt.type === 'json') {
-		this.req.onload		= this.onJsonLoad.bind(this);
-		this.req.onerror	= this.onJsonError.bind(this);
-	}
+Ajax.Methods.prototype.defaultOptions = {
+	method		: 'GET',
+	data		: null,
+	complete	: function(){},
+	fail		: function(){}
+};
+
+Ajax.Methods.prototype.bindEvents = function() {
+	this.req.onload		= this.loadListener.bind(this);
+	this.req.onerror	= this.errorListener.bind(this);
 };
 
 Ajax.Methods.prototype.createRequest = function() {
 	this.req = new XMLHttpRequest();
 	this.req.open(this.opt.method, this.opt.url, true);
+	this.setHeaders();
 };
 
-Ajax.Methods.prototype.onJsonLoad = function() {
-	if (this.req.status >= 200 && this.req.status < 400)
-		this.opt.complete(JSON.parse(this.req.responseText), this.req);
+Ajax.Methods.prototype.setHeaders = function() {
+	for (var header in this.opt.headers)
+		this.req.setRequestHeader(header, this.opt[header]);
 };
 
-Ajax.Methods.prototype.onJsonError = function() {
+Ajax.Methods.prototype.loadListener = function() {
+	if (this.req.status >= 200 && this.req.status < 400) {
+		var data;
+
+		if (this.opt.contentType !== "text"){
+			try{
+				data = JSON.parse(this.req.responseText);
+			}
+			catch(e) {
+				data = this.req.responseText;		
+			}
+		} else {
+			data = this.req.responseText;
+		}
+
+		this.opt.complete(data);
+	}
+};
+
+Ajax.Methods.prototype.errorListener = function() {
 	this.opt.fail(this.req);
 };
