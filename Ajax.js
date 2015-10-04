@@ -41,7 +41,8 @@ Ajax.Methods.prototype.defaultOptions = {
 	data		: null,
 	complete	: function(){},
 	fail		: function(){},
-	contentType : 'application/x-www-form-urlencoded; charset=UTF-8'
+	contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+	context		: window
 };
 
 Ajax.Methods.prototype.bindEvents = function() {
@@ -57,7 +58,7 @@ Ajax.Methods.prototype.createRequest = function() {
 
 Ajax.Methods.prototype.setHeaders = function() {
 	this.opt.headers['Content-Type'] = this.opt.contentType;
-	
+
 	for (var header in this.opt.headers)
 		this.req.setRequestHeader(header, this.opt[header]);
 };
@@ -77,10 +78,10 @@ Ajax.Methods.prototype.loadListener = function() {
 			data = this.req.responseText;
 		}
 
-		this.opt.complete(data);
+		this.opt.complete.call(this.opt.context, data);
 	}
 };
 
 Ajax.Methods.prototype.errorListener = function() {
-	this.opt.fail(this.req);
+	this.opt.fail.call(this.opt.context, this.req);
 };
