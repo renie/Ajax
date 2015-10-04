@@ -39,7 +39,7 @@ Ajax.Methods = function(options) {
 Ajax.Methods.prototype.defaultOptions = {
 	method		: 'GET',
 	data		: null,
-	complete	: function(){},
+	success		: function(){},
 	fail		: function(){},
 	contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 	context		: window
@@ -78,7 +78,7 @@ Ajax.Methods.prototype.loadListener = function() {
 			data = this.req.responseText;
 		}
 
-		this.opt.complete.call(this.opt.context, data);
+		this.opt.success.call(this.opt.context, data);
 	}
 };
 
