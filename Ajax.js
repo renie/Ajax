@@ -1,88 +1,105 @@
 'use strict';
 
-var Ajax = {};
+(function(root, ajax) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define([], ajax);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS-like
+        module.exports = ajax();
+    } else {
+        // Browser globals (root is window)
+        root.Ajax = ajax();
+    }
+}(window, function() {
 
-Ajax.Utils = {
-	extend : function() {
-		var extended = {}, argument;
+	var Ajax = {};
 
-		for(var key in arguments) {
-			argument = arguments[key];
-			for (var prop in argument)
-				if (Object.prototype.hasOwnProperty.call(argument, prop))
-					extended[prop] = argument[prop];
-		}
+	Ajax.Utils = {
+		extend : function() {
+			var extended = {}, argument;
 
-		return extended;
-	}
-};
-
-Ajax.call = function(options) {
-	var ajax = new Ajax.Methods(options);
-
-	ajax.createRequest();
-
-	ajax.bindEvents();
-
-	ajax.req.send(ajax.opt.data);
-};
-
-Ajax.Methods = function(options) {
-	if (!options.url)
-		return false;
-
-	this.opt = Ajax.Utils.extend(this.defaultOptions, options);
-
-	return this;
-};
-
-Ajax.Methods.prototype.defaultOptions = {
-	method		: 'GET',
-	data		: null,
-	success		: function(){},
-	fail		: function(){},
-	contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
-	headers		: {},
-	context		: window
-};
-
-Ajax.Methods.prototype.bindEvents = function() {
-	this.req.onload		= this.loadListener.bind(this);
-	this.req.onerror	= this.errorListener.bind(this);
-};
-
-Ajax.Methods.prototype.createRequest = function() {
-	this.req = new XMLHttpRequest();
-	this.req.open(this.opt.method, this.opt.url, true);
-	this.setHeaders();
-};
-
-Ajax.Methods.prototype.setHeaders = function() {
-	this.opt.headers['Content-Type'] = this.opt.contentType;
-
-	for (var header in this.opt.headers)
-		this.req.setRequestHeader(header, this.opt[header]);
-};
-
-Ajax.Methods.prototype.loadListener = function() {
-	if (this.req.status >= 200 && this.req.status < 400) {
-		var data;
-
-		if (this.opt.dataType !== "text"){
-			try{
-				data = JSON.parse(this.req.responseText);
+			for(var key in arguments) {
+				argument = arguments[key];
+				for (var prop in argument)
+					if (Object.prototype.hasOwnProperty.call(argument, prop))
+						extended[prop] = argument[prop];
 			}
-			catch(e) {
-				data = this.req.responseText;		
-			}
-		} else {
-			data = this.req.responseText;
+
+			return extended;
 		}
+	};
 
-		this.opt.success.call(this.opt.context, data);
-	}
-};
+	Ajax.call = function(options) {
+		var ajax = new Ajax.Methods(options);
 
-Ajax.Methods.prototype.errorListener = function() {
-	this.opt.fail.call(this.opt.context, this.req);
-};
+		ajax.createRequest();
+
+		ajax.bindEvents();
+
+		ajax.req.send(ajax.opt.data);
+	};
+
+	Ajax.Methods = function(options) {
+		if (!options.url)
+			return false;
+
+		this.opt = Ajax.Utils.extend(this.defaultOptions, options);
+
+		return this;
+	};
+
+	Ajax.Methods.prototype.defaultOptions = {
+		method		: 'GET',
+		data		: null,
+		success		: function(){},
+		fail		: function(){},
+		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
+		headers		: {},
+		context		: window
+	};
+
+	Ajax.Methods.prototype.bindEvents = function() {
+		this.req.onload		= this.loadListener.bind(this);
+		this.req.onerror	= this.errorListener.bind(this);
+	};
+
+	Ajax.Methods.prototype.createRequest = function() {
+		this.req = new XMLHttpRequest();
+		this.req.open(this.opt.method, this.opt.url, true);
+		this.setHeaders();
+	};
+
+	Ajax.Methods.prototype.setHeaders = function() {
+		this.opt.headers['Content-Type'] = this.opt.contentType;
+
+		for (var header in this.opt.headers)
+			this.req.setRequestHeader(header, this.opt[header]);
+	};
+
+	Ajax.Methods.prototype.loadListener = function() {
+		if (this.req.status >= 200 && this.req.status < 400) {
+			var data;
+
+			if (this.opt.dataType !== "text"){
+				try{
+					data = JSON.parse(this.req.responseText);
+				}
+				catch(e) {
+					data = this.req.responseText;		
+				}
+			} else {
+				data = this.req.responseText;
+			}
+
+			this.opt.success.call(this.opt.context, data);
+		}
+	};
+
+	Ajax.Methods.prototype.errorListener = function() {
+		this.opt.fail.call(this.opt.context, this.req);
+	};
+
+	return Ajax;
+
+}));
