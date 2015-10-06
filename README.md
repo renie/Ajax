@@ -65,3 +65,7 @@ Ajax.call({
 
 * success [function]:
 	* Function that will be called if your function returns code 200.
+
+## License
+
+GPL 3 (full copy shipped with code)
