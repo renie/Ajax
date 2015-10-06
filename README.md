@@ -1,6 +1,9 @@
 # Ajax
 
-A tiny XMLHTTPRequest abstraction.
+A tiny XMLHTTPRequest abstraction. In less than 2kb minified.
+
+(Actually, by now, less than 1.5kb minified and a bit more than 600b minified and gzip).
+
 
 ## Why?
 
