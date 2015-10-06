@@ -17,6 +17,6 @@
 	"ignore": [
 		"index.html",
 		"test.json"
-	]
+	],
 	"license": "GPL3"
 }
