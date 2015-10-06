@@ -1,7 +1,7 @@
 {
 	"name": "Ajax",
 	"main": "Ajax.js",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"homepage": "https://github.com/renie/Ajax",
 	"authors": [
 		"Renie Siqueira <renie.webdev@gmail.com>"
@@ -16,7 +16,8 @@
 	],
 	"ignore": [
 		"index.html",
-		"test.json"
+		"test.json",
+		"testCommon.js"
 	],
 	"license": "GPL3"
 }
