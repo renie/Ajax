@@ -5,6 +5,23 @@
 	<title>Document</title>
 </head>
 <body>
+	<!-- Loading Ajax on AMD loader-->
+	<!-- 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script>
+	<script>
+		(function(){
+			require(['Ajax'], function(ajax) {
+				ajax.call({
+					url: '/test.json',
+					success: function(data) {
+						console.log(data);
+					}
+				});
+			});
+		})();
+	</script>
+	-->
+
 	<!-- Loading Ajax with window global-->
 	<script src="Ajax.js"></script>
 	<script>
