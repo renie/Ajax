@@ -36,6 +36,8 @@ Ajax.call({
 });
 ```
 
+This lib supports **UMD**. So, import this via **AMD**, **CommonJS** or importing min script in you HTML and using as **window global**.
+
 ## Options
 
 * contentType [string]: 

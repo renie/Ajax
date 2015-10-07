@@ -1,16 +1,19 @@
 'use strict';
 
 (function(root, ajax) {
-    if (typeof define === 'function' && define.amd) {
-        // AMD
-        define([], ajax);
-    } else if (typeof exports === 'object') {
-        // Node, CommonJS-like
-        module.exports = ajax();
-    } else {
-        // Browser globals (root is window)
-        root.Ajax = ajax();
-    }
+	/*
+	**	UMD BLOCK
+	*/	
+	if (typeof define === 'function' && define.amd) {
+		// AMD
+		define([], ajax);
+	} else if (typeof exports === 'object') {
+		// Node, CommonJS-like
+		module.exports = ajax();
+	} else {
+		// Browser globals (root is window)
+		root.Ajax = ajax();
+	}
 }(window, function() {
 
 	var Ajax = {};
