@@ -27,7 +27,7 @@ bower install Ajax
 
 If you know how to use jQuery Ajax methods, you know how to use this. See below:
 
-```
+```javascript
 Ajax.call({
 	url: '/foo',
 	success: function(data) {
