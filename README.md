@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/renie/Ajax/badges/gpa.svg)](https://codeclimate.com/github/renie/Ajax)
+
 # Ajax
 
 A tiny XMLHTTPRequest abstraction. In less than 2kb minified.
