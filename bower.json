@@ -1,7 +1,7 @@
 {
 	"name": "Ajax",
 	"main": "Ajax.js",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"homepage": "https://github.com/renie/Ajax",
 	"authors": [
 		"Renie Siqueira <renie.webdev@gmail.com>"
