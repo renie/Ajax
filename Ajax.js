@@ -43,8 +43,15 @@
 		ajax.req.send(ajax.opt.data);
 	};
 
+	Ajax.setup = function(options) {
+		var opt = Ajax.Utils.extend(Ajax.Methods.prototype.defaultOptions, options);
+
+		Ajax.Methods.prototype.defaultOptions = opt;
+		Ajax.Methods.prototype.setupExecuted = true;
+	};
+
 	Ajax.Methods = function(options) {
-		if (!options.url)
+		if (this.urlIsEmpty(options))
 			return false;
 
 		this.opt = Ajax.Utils.extend(this.defaultOptions, options);
@@ -60,6 +67,10 @@
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		headers		: {},
 		context		: window
+	};
+
+	Ajax.Methods.prototype.urlIsEmpty = function(options) {
+		return ((!options.url && !this.setupExecuted) || (this.setupExecuted && !this.defaultOptions.url));
 	};
 
 	Ajax.Methods.prototype.bindEvents = function() {
