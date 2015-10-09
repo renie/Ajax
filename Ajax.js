@@ -52,7 +52,7 @@
 
 	Ajax.Methods = function(options) {
 		if (this.urlIsEmpty(options))
-			return false;
+			throw new ReferenceError('URL is missing. It should be passed by parameter to Ajax.call method or setted on Ajax.setup.');
 
 		this.opt = Ajax.Utils.extend(this.defaultOptions, options);
 
