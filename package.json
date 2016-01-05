@@ -1,0 +1,26 @@
+{
+  "name": "ajax",
+  "version": "1.0.0",
+  "description": "A tiny XMLHTTPRequest abstraction",
+  "main": "Ajax.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/renie/Ajax.git"
+  },
+  "keywords": [
+    "ajax",
+    "request",
+    "javascript",
+    "get",
+    "post"
+  ],
+  "author": "renie",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/renie/Ajax/issues"
+  },
+  "homepage": "https://github.com/renie/Ajax#readme"
+}
