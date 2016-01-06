@@ -1,12 +1,11 @@
 {
 	"name": "Ajax",
-	"main": "Ajax.js",
-	"version": "1.0.3",
-	"homepage": "https://github.com/renie/Ajax",
+	"version": "1.0.4",
+	"description": "A tiny XMLHTTPRequest abstraction.",
+	"main": "Ajax.min.js",
 	"authors": [
 		"Renie Siqueira <renie.webdev@gmail.com>"
 	],
-	"description": "A tiny XMLHTTPRequest abstraction.",
 	"keywords": [
 		"ajax",
 		"request",
@@ -20,4 +19,5 @@
 		"testCommon.js"
 	],
 	"license": "GPL3"
+	"homepage": "https://github.com/renie/Ajax",
 }
