@@ -25,6 +25,15 @@ You can just download it from this repo. But I'd recommend you to use bower meth
 bower install Ajax
 ```
 
+You can also use npm:
+
+```
+npm install ajax-abstraction
+```
+
+Yeap, not same name. It was already taken on NPM. Life is not so beautiful =/
+
+
 ## How to use
 
 If you know how to use jQuery Ajax methods, you know how to use this. See below:
