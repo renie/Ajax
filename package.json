@@ -1,5 +1,5 @@
 {
-	"name": "ajax",
+	"name": "ajax-abstraction",
 	"version": "1.0.4",
 	"description": "A tiny XMLHTTPRequest abstraction.",
 	"main": "Ajax.min.js",
