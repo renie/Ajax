@@ -88,7 +88,7 @@
 		this.opt.headers['Content-Type'] = this.opt.contentType;
 
 		for (var header in this.opt.headers)
-			this.req.setRequestHeader(header, this.opt[header]);
+			this.req.setRequestHeader(header, this.opt.headers[header]);
 	};
 
 	Ajax.Methods.prototype.loadListener = function() {
