@@ -1,8 +1,8 @@
 {
 	"name": "ajax-abstraction",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"description": "A tiny XMLHTTPRequest abstraction.",
-	"main": "Ajax.min.js",
+	"main": "dist/Ajax.min.js",
 	"author": "Renie Siqueira <renie.webdev@gmail.com>",
 	"repository": {
 		"type": "git",

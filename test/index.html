@@ -5,8 +5,9 @@
 	<title>Document</title>
 </head>
 <body>
-	<!-- Loading Ajax on CommonJS loader-->
-	<!-- 
+	<script src="../dist/Ajax.min.js"></script>
+
+	<!-- Loading Ajax on CommonJS loader
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.18.4/system.js"></script>
 	<script>
 		System.config({
@@ -14,17 +15,16 @@
 		});
 		System.import('./testCommon.js');
 	</script>
-	-->
+	 -->
+	
 
-
-	<!-- Loading Ajax on AMD loader-->
-	<!-- 
+	<!-- Loading Ajax on AMD loader
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.20/require.min.js"></script>
 	<script>
 		(function(){
-			require(['Ajax'], function(ajax) {
+			require(['../dist/Ajax.min.js'], function(ajax) {
 				ajax.call({
-					url: '/test.json',
+					url: '/test/test.json',
 					success: function(data) {
 						console.log(data);
 					}
@@ -32,14 +32,13 @@
 			});
 		})();
 	</script>
-	-->
-
-	<!-- Loading Ajax with window global-->
-	<script src="Ajax.js"></script>
+	 -->
+	
+	<!-- Loading Ajax with window global -->
 	<script>
 		(function(){
 			Ajax.call({
-				url: '/test.json',
+				url: '/test/test.json',
 				success: function(data) {
 					console.log(data);
 				}

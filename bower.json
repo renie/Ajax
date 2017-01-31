@@ -2,7 +2,7 @@
 	"name": "Ajax",
 	"version": "1.0.5",
 	"description": "A tiny XMLHTTPRequest abstraction.",
-	"main": "Ajax.min.js",
+	"main": "dist/Ajax.min.js",
 	"authors": [
 		"Renie Siqueira <renie.webdev@gmail.com>"
 	],

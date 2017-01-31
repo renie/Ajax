@@ -1,7 +1,7 @@
-var aj = require('Ajax');
+var aj = require('../dist/Ajax.min.js');
 
 aj.call({
-	url: '/test.json',
+	url: 'test.json',
 	success: function(data) {
 		console.log(data);
 	}
