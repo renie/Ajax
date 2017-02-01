@@ -30,6 +30,18 @@
 			}
 
 			return extended;
+		},
+
+		parseData : function(response, dataType) {
+			if (dataType !== "text"){
+				try{
+					return JSON.parse(response);
+				} catch(e) {
+					return response;		
+				}
+			} else {
+				return response;
+			}
 		}
 	};
 
@@ -92,24 +104,10 @@
 	};
 
 	Ajax.Methods.prototype.loadListener = function() {
-		if (this.req.status >= 200 && this.req.status < 400) {
-			var data;
-
-			if (this.opt.dataType !== "text"){
-				try{
-					data = JSON.parse(this.req.responseText);
-				}
-				catch(e) {
-					data = this.req.responseText;		
-				}
-			} else {
-				data = this.req.responseText;
-			}
-
-			this.opt.success.call(this.opt.context, data);
-		} else {
+		if (this.req.status >= 200 && this.req.status < 400)
+			this.opt.success.call(this.opt.context, Ajax.Utils.parseData(this.req.responseText, this.opt.dataType));
+		else
 			this.errorListener.call(this, new Error(this.req.statusText));
-		}
 	};
 
 	Ajax.Methods.prototype.errorListener = function(err) {
