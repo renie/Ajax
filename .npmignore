@@ -1,0 +1,7 @@
+.*.swp
+npm-debug.log
+node_modules
+scripts
+src
+test
+.gitignore

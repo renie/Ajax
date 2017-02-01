@@ -39,6 +39,19 @@
 	<script>
 		(function(){
 			Ajax.call({
+				url: '/test/test.json',
+				success: function(data) {
+					console.log(data);
+				},
+				error: function(err) {
+					throw err;
+				}
+			});
+		})();
+	</script>
+	<script>
+		(function(){
+			Ajax.call({
 				url: '/test/tsest.json',
 				success: function(data) {
 					console.log(data);
