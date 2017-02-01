@@ -6,6 +6,7 @@
 </head>
 <body>
 	<script src="../dist/Ajax.min.js"></script>
+	<!--<script src="../src/Ajax.js"></script>-->
 
 	<!-- Loading Ajax on CommonJS loader
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.18.4/system.js"></script>
@@ -38,9 +39,12 @@
 	<script>
 		(function(){
 			Ajax.call({
-				url: '/test/test.json',
+				url: '/test/tsest.json',
 				success: function(data) {
 					console.log(data);
+				},
+				error: function(err) {
+					throw err;
 				}
 			});
 		})();

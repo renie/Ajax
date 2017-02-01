@@ -63,7 +63,7 @@
 		method		: 'GET',
 		data		: null,
 		success		: function(){},
-		fail		: function(){},
+		error		: function(){},
 		contentType : 'application/x-www-form-urlencoded; charset=UTF-8',
 		headers		: {},
 		context		: window
@@ -107,11 +107,13 @@
 			}
 
 			this.opt.success.call(this.opt.context, data);
+		} else {
+			this.errorListener.call(this, new Error(this.req.statusText));
 		}
 	};
 
-	Ajax.Methods.prototype.errorListener = function() {
-		this.opt.fail.call(this.opt.context, this.req);
+	Ajax.Methods.prototype.errorListener = function(err) {
+		this.opt.error.call(this.opt.context, err, this.req);
 	};
 
 	return Ajax;
