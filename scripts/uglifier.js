@@ -1,5 +1,3 @@
-#!/usr/bin/node
-
 var UglifyJS	= require('uglify-js'),
 	FS			= require('fs'),
 	result		= UglifyJS.minify('src/Ajax.js');
