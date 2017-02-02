@@ -1,6 +1,6 @@
 {
 	"name": "ajax-abstraction",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "A tiny XMLHTTPRequest abstraction.",
 	"main": "dist/Ajax.min.js",
 	"author": "Renie Siqueira <renie.webdev@gmail.com>",
@@ -22,7 +22,6 @@
 		"uglify-js": "^2.7.5"
 	},
 	"scripts": {
-		"prepublishOnly": "npm build",
 		"postinstall": "npm run build",
 		"build": "./scripts/build.js",
 		"minify": "./scripts/uglifier.js"
